@@ -1,3 +1,5 @@
+# _This repo is still new and it is poorly documented_
+
 # Reinforcememnt Learning Library
 Reinforcement Learning Experiments 
 In this project, I am attempting to build a set of RL classes to pave the way to build a multi-agent simulator 
