@@ -7,17 +7,18 @@ using System.Threading.Tasks;
 namespace AI.RL.Stochastic
 {
     /*
-     * A Policy is used to learn how an environment behaves 
+     * A Policy is used to learn how an environment behaves
      * and finds the optimal way of interacting with it
      */
     class Policy
     {
-        private double[,] _q; // State Action Pair , i = state, j = action 
-        private double[] _v; // State Value 
+      //TODO: Add a parameter to identify type of learnnig 
+        private double[,] _q; // State Action Pair , i = state, j = action
+        private double[] _v; // State Value
 
         private Parameters _param;
 
-        private double[] _theta; // used for function approximation 
+        private double[] _theta; // used for function approximation
 
         public Policy(int nStates, int nActions, Parameters param)
         {
@@ -28,14 +29,14 @@ namespace AI.RL.Stochastic
 
         public Policy(int nStates, int nActions) : this(nStates, nActions, new Parameters())
         { }
-     
+
 
         public int BestAction(int stateID)
         {
             // Given a state ID, find best Action ID
             try
             {
-                double[] val = new double[_q.GetLength(1)]; 
+                double[] val = new double[_q.GetLength(1)];
                 for(int i=0;i<val.Length;i++)
                 {
                     val[i] = _q[stateID, i];
@@ -46,7 +47,7 @@ namespace AI.RL.Stochastic
             {
                 return 0;
             }
-            
+
         }
 
         public void Print()

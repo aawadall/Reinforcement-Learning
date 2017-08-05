@@ -10,15 +10,15 @@ namespace AI.RL.Stochastic
      * from one state to another based on a given action */
     class WorldDynamics
     {
-        private double[,,] _transProb; // Transition Probability from state to state given action 
-        private double[,,] _rewardMean; // Mean value of a reward given transission and action 
+        private double[,,] _transProb; // Transition Probability from state to state given action
+        private double[,,] _rewardMean; // Mean value of a reward given transission and action
 
         public WorldDynamics(int nStates, int nActions)
         {
             // Initialize Transmission probability and rewards means given state space size and action space size
-            _transProb = new double[nStates, nStates, nActions]; // i = s', j = s, k = a 
+            _transProb = new double[nStates, nStates, nActions]; // i = s', j = s, k = a
             ConstructTrans();
-            _rewardMean = new double[nStates, nStates, nActions]; // i = s', j = s, k = a 
+            _rewardMean = new double[nStates, nStates, nActions]; // i = s', j = s, k = a
             ConstructRewards(10);
         }
 
@@ -26,7 +26,7 @@ namespace AI.RL.Stochastic
         {
             Console.WriteLine("Constructing Transition Probability");
             // Read a file to construct transition probability
-            // For now build using random distribution 
+            // For now build using random distribution
             Random rnd = new Random();
             for (int k = 0; k< _transProb.GetLength(2);k++)
             {
@@ -52,20 +52,20 @@ namespace AI.RL.Stochastic
 
         public void ConstructRewards(double Factor)
         {
-            // Read a file to construct Reward means 
-            // For now build using random distribution 
+            // Read a file to construct Reward means
+            // For now build using random distribution
             Random rnd = new Random();
             for (int i = 0; i < _rewardMean.GetLength(0); i++)
             {
                 for (int j = 0; j < _rewardMean.GetLength(1); j++)
                 {
-                    
+
                     for (int k = 0; k < _rewardMean.GetLength(2); k++)
                     {
                         double p = Factor*(rnd.NextDouble()-0.5);
-                       
+
                         _rewardMean[i, j, k] = p;
-                       
+
                     }
                 }
             }
@@ -75,7 +75,7 @@ namespace AI.RL.Stochastic
         {
             // TODO: Replace s1 with current state of env
             State s1 = env.CurrentState;
-            
+
             State s2 = env.GetState(GetNextState(s1.ID, action.ID));
             Random rnd = new Random();
             double reward = rnd.NextDouble()/2+ _rewardMean[s2.ID,s1.ID,action.ID];
@@ -87,12 +87,13 @@ namespace AI.RL.Stochastic
 
         public int GetNextState(int current,int action)
         {
+          // I might need to rename this method to something more meaningful
             // given current state and action, and using _transProb, find next state ID
             Random rnd = new Random();
             // Roll the dice
             double chance = rnd.NextDouble();
 
-            // Check the odds 
+            // Check the odds
             for (int i = 0; i < _transProb.GetLength(0);i++ )
             {
                 if(chance < _transProb[i,current,action])

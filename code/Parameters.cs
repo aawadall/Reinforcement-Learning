@@ -8,8 +8,18 @@ namespace AI.RL.Stochastic
 {
     class Parameters
     {
-        
-       
+
+        private string _algorithm; /* Possible Values :
+                                    * - QLEARN = Q-Learning
+                                    * - SARSA = SARSA
+                                    * - ESARSA = Expected SARSA
+                                    * - TD = Temproral Difference
+                                    */
+        public string Algorithm
+        {
+          get {return _algorithm; }
+          set {algorithm = value; }
+        }
         private double _alpha; // learning rate
 
         public double Alpha
@@ -17,7 +27,7 @@ namespace AI.RL.Stochastic
             get { return _alpha; }
             set { _alpha = value; }
         }
-        private double _gamma; // discount rate 
+        private double _gamma; // discount rate
 
         public double Gamma
         {
@@ -31,7 +41,7 @@ namespace AI.RL.Stochastic
             get { return _lambda; }
             set { _lambda = value; }
         }
-        private double _epsilon; // exploration chance 
+        private double _epsilon; // exploration chance
 
         public double Epsilon
         {
@@ -49,7 +59,7 @@ namespace AI.RL.Stochastic
                 return random.NextDouble();
             }
         }
-        public Parameters() 
+        public Parameters()
         {
             //Random rnd = new Random();
             _alpha = RandomNumber();//rnd.NextDouble();
@@ -58,7 +68,7 @@ namespace AI.RL.Stochastic
             _epsilon = RandomNumber(); //rnd.NextDouble();
             Print();
             //Console.ReadLine();
-            
+
         }
         public Parameters(double alpha, double gamma,  double lambda, double epsilon)
         {
