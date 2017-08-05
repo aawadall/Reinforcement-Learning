@@ -90,7 +90,7 @@ namespace AI.RL.Stochastic
         public void Learn(Signal sig)
         {
             int state = sig.PrevioustState.ID;
-            int action = sig.Action;
+            int action = sig.Action.ID;
             double[] qState = new double[_q.GetLength(1)];
             for (int i = 0; i < qState.Length;i++ )
             {

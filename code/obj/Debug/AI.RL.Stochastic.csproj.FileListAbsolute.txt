@@ -1,1 +1,6 @@
 C:\Users\aawad\Source\Repos\Reinforcement-Learning\code\obj\Debug\AI.RL.Stochastic.csprojResolveAssemblyReference.cache
+C:\Users\aawad\Source\Repos\Reinforcement-Learning\code\bin\Debug\AI.RL.Stochastic.exe.config
+C:\Users\aawad\Source\Repos\Reinforcement-Learning\code\bin\Debug\AI.RL.Stochastic.exe
+C:\Users\aawad\Source\Repos\Reinforcement-Learning\code\bin\Debug\AI.RL.Stochastic.pdb
+C:\Users\aawad\Source\Repos\Reinforcement-Learning\code\obj\Debug\AI.RL.Stochastic.exe
+C:\Users\aawad\Source\Repos\Reinforcement-Learning\code\obj\Debug\AI.RL.Stochastic.pdb

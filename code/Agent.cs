@@ -38,7 +38,7 @@ namespace AI.RL.Stochastic
         public Signal Play(Action action, Environment env)
         {
             // Should learn later 
-            Signal sig = env.React(action);
+            Signal sig = env.React(action,this);
             _return = _policy.GetReturn(sig, _return);
             _policy.Learn( sig);
             return sig;
