@@ -71,7 +71,7 @@ namespace AI.RL.Stochastic
             }
         }
 
-        public Signal React(Action action, Environment env)
+        public Signal React(Action action, Agent actor, Environment env)
         {
             // TODO: Replace s1 with current state of env
             State s1 = env.CurrentState;
@@ -80,7 +80,7 @@ namespace AI.RL.Stochastic
             Random rnd = new Random();
             double reward = rnd.NextDouble()/2+ _rewardMean[s2.ID,s1.ID,action.ID];
 
-            Signal sig = new Signal(s2, s1, reward, action.ID);
+            Signal sig = new Signal(s2, s1, reward, action, actor);
 
             return sig;
         }

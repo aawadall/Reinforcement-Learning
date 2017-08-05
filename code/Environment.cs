@@ -21,13 +21,14 @@ namespace AI.RL.Stochastic
         private State[] _states;
         private Agent[] _agents;
 
+        private Signal _sig; // This signal object will be used for observations
 
-        public Environment(int nStates, int nActions, int nAgents)
+        public Environment(int nStates, int nActions, int nAgents, WorldDynamics WD)
         {
             ConstructActions(nActions);
             ConstructStates(nStates);
             ConstructAgents(nAgents);
-            _WD = new WorldDynamics(nStates, nActions);
+            _WD = WD;
 
         }
 
@@ -72,8 +73,8 @@ namespace AI.RL.Stochastic
                 _agents[i] = new Agent(_states.Length,_actions.Length,i);
             }
         }
-        public int nAgents { get { return _agents.Length; } }
-        public Agent ActiveAgent { get { return _agents[ActiveAgentID]; } }
+        public int nAgents =>  _agents.Length; 
+        public Agent ActiveAgent => _agents[ActiveAgentID]; 
         public Agent GetAgent(int idx)
         {
             return _agents[idx];
@@ -81,10 +82,14 @@ namespace AI.RL.Stochastic
         // Simulation 
         public Signal React(Action action)
         {
-            Signal sig = _WD.React(action, this);
-            _currentState = sig.CurrentState.ID;
-            return sig;
+            _sig = _WD.React(action, this);
+            _currentState = _sig.CurrentState.ID;
+            return _sig;
         }
+
+        public Signal Observe => _sig; /* Observing current state of the environment 
+                                        * without altering the current state */
+
         public void Print()
         {
             // Side by side 
