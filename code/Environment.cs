@@ -80,9 +80,9 @@ namespace AI.RL.Stochastic
             return _agents[idx];
         }
         // Simulation 
-        public Signal React(Action action)
+        public Signal React(Action action, Agent actor)
         {
-            _sig = _WD.React(action, this);
+            _sig = _WD.React(action, actor, this);
             _currentState = _sig.CurrentState.ID;
             return _sig;
         }
