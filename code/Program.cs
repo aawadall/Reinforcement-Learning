@@ -16,7 +16,7 @@ namespace AI.RL.Stochastic
         {
             int nActions = 15;
             int nStates = 12;
-            int nAgents = 20;
+            int nAgents = 10;
             WorldDynamics WD = new WorldDynamics(nStates, nActions);
             Environment env = new Environment(nStates, nActions,nAgents,WD);
             
@@ -44,6 +44,7 @@ namespace AI.RL.Stochastic
             }
              */
             env.Print();
+            Console.ReadLine();
         }
     }
 }
