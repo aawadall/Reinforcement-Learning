@@ -31,7 +31,10 @@ namespace AI.RL.Stochastic
             _actor = actor;
         }
 
-      
+        public Signal():this(null,null,0,null,null)
+        {
+        }
+
         public double Reward { get { return _reward; } }
         public State CurrentState { get { return _currentState; } }
         public State PrevioustState { get { return _previousState; } }

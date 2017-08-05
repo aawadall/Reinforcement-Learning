@@ -35,19 +35,32 @@ namespace AI.RL.Stochastic
             _policy = new Policy(nStates, nActions);
         }
 
-        public Signal Play(Action action, Environment env)
+        public Signal Play(Boolean play,Environment env)
         {
-            // Should learn later 
-            Signal sig = env.React(action,this);
+            if (play)
+            {
+                Interact(env);
+            }
+            
+             return Observe(env);
+                   
+        }
+        public Signal Interact(Action action, Environment env)
+        {
+            
+            // Interact with Environment 
+            Signal sig = env.Interact(action,this);
             _return = _policy.GetReturn(sig, _return);
-            _policy.Learn( sig);
+            //_policy.Learn( sig);
+            Observe(env); 
             return sig;
         }
 
-        public Signal Play(Environment env)
+        public Signal Interact(Environment env)
         {
-            return Play(env.GetAction(_policy.GetBestMove(env.CurrentState.ID)), env);
+            return Interact(env.GetAction(_policy.GetBestMove(env.CurrentState.ID)), env);
         }
+
         public void Print()
         {
             Console.WriteLine("Agent[" + _id + "] Statistics");
@@ -55,6 +68,12 @@ namespace AI.RL.Stochastic
             Console.WriteLine("Accumilated Return = " + _return);
         }
 
+        public Signal Observe(Environment env)
+        {
+            // Learn by observing 
+            _policy.Learn(env.Observe);
+            return env.Observe;
+        }
         public double Alpha { get { return _policy.Alpha; } }
         public double Gamma { get { return _policy.Gamma; } }
     }

@@ -29,7 +29,7 @@ namespace AI.RL.Stochastic
             ConstructStates(nStates);
             ConstructAgents(nAgents);
             _WD = WD;
-
+            _sig = new Signal(_states[0],_states[0],-100,_actions[0],_agents[0]);
         }
 
         // States    
@@ -79,9 +79,11 @@ namespace AI.RL.Stochastic
         {
             return _agents[idx];
         }
+        public Agent[] AllAgents => _agents;
         // Simulation 
-        public Signal React(Action action, Agent actor)
+        public Signal Interact(Action action, Agent actor)
         {
+            Console.WriteLine("Interacting with Agent: " + actor.ID);
             _sig = _WD.React(action, actor, this);
             _currentState = _sig.CurrentState.ID;
             return _sig;
@@ -94,25 +96,25 @@ namespace AI.RL.Stochastic
         {
             // Side by side 
             // 1 list agents
-            Console.WriteLine();
+            //Console.WriteLine();
             Console.Write("Agent\t");
             for (int i=0;i<nAgents;i++)
             { Console.Write("\t"+i);}
             Console.WriteLine();
             // alpha 
-            Console.WriteLine();
+            //Console.WriteLine();
             Console.Write("Alpha\t");
             for (int i = 0; i < nAgents; i++)
             { Console.Write("\t" + string.Format("{0:0.00}",_agents[i].Alpha)); }
             Console.WriteLine();
             // gamma
-            Console.WriteLine();
+            //Console.WriteLine();
             Console.Write("Gamma\t");
             for (int i = 0; i < nAgents; i++)
             { Console.Write("\t" + string.Format("{0:0.00}", _agents[i].Gamma)); }
             Console.WriteLine();
             // return 
-            Console.WriteLine();
+            //Console.WriteLine();
             Console.Write("Return\t");
             for (int i = 0; i < nAgents; i++)
             { Console.Write("\t" + string.Format("{0:n0}", _agents[i].Return)); }

@@ -17,6 +17,7 @@ namespace AI.RL.Stochastic
             int nActions = 15;
             int nStates = 12;
             int nAgents = 10;
+
             WorldDynamics WD = new WorldDynamics(nStates, nActions);
             Environment env = new Environment(nStates, nActions,nAgents,WD);
             
@@ -25,16 +26,25 @@ namespace AI.RL.Stochastic
             Signal sig;
             int idx = 0;
             Random rnd = new Random();
-            for (int i = 0; i < 1000000;i++ )
+            for (int i = 0; i < 10000;i++ )
             {
-                idx = GetNextAgent(nAgents, idx); ;
-                env.ActiveAgentID = idx;
-                //Console.WriteLine("Active Agent : "+env.ActiveAgentID);
-                sig = env.ActiveAgent.Play(env);
-                    //React(action[idx]);
-                
-                //Console.WriteLine("Action:"+sig.Action+" Moved From State " + sig.PrevioustState.ID + "->" + sig.CurrentState.ID + " Yielded " + sig.Reward);
-                //Console.WriteLine("Played by Agent["+env.ActiveAgent.ID+"], Current Return : "+env.ActiveAgent.Return);
+                idx += idx<nAgents-1?1:1-nAgents;
+                //idx = GetNextAgent(nAgents, idx); 
+                foreach(Agent agent in env.AllAgents)
+                {
+                    //Console.WriteLine("Agent ["+agent.ID+"] Playing");
+                    if(agent.ID == idx)
+                    {
+                        sig=agent.Play(true, env);
+                    }
+                    else
+                    {
+                        sig=agent.Play(false, env);
+                    }
+                }
+      
+                sig = env.ActiveAgent.Interact(env);
+
             }
            
             /*
