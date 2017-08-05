@@ -18,7 +18,7 @@ namespace AI.RL.Stochastic
         public string Algorithm
         {
           get {return _algorithm; }
-          set {algorithm = value; }
+          set {_algorithm = value; }
         }
         private double _alpha; // learning rate
 
