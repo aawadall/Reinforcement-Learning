@@ -59,16 +59,9 @@ namespace AI.RL.Stochastic
                 return random.NextDouble();
             }
         }
-        public Parameters()
+        public Parameters(): this(RandomNumber(), RandomNumber(), RandomNumber(), RandomNumber())
         {
-            //Random rnd = new Random();
-            _alpha = RandomNumber();//rnd.NextDouble();
-            _gamma = RandomNumber();//rnd.NextDouble();
-            _lambda = RandomNumber(); //rnd.NextDouble();
-            _epsilon = RandomNumber(); //rnd.NextDouble();
-            Print();
-            //Console.ReadLine();
-
+            // If no parameters passed, create random ones 
         }
         public Parameters(double alpha, double gamma,  double lambda, double epsilon)
         {

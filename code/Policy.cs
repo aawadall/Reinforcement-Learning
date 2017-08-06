@@ -12,7 +12,7 @@ namespace AI.RL.Stochastic
      */
     class Policy
     {
-      //TODO: Add a parameter to identify type of learnnig 
+        private readonly string _algorithm; //Learning Algorithm, future feature  
         private double[,] _q; // State Action Pair , i = state, j = action
         private double[] _v; // State Value
 
@@ -98,7 +98,7 @@ namespace AI.RL.Stochastic
             }
             _v[state] = qState.Max();
             _q[state, action] += _param.Alpha * (sig.Reward + _param.Gamma * _v[state] - _q[state, action]);
-            //Console.WriteLine("Learning " + _q[state, action]);
+          
         }
 
         public int GetBestMove(int state)

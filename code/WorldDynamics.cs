@@ -76,13 +76,18 @@ namespace AI.RL.Stochastic
 
             State s2 = env.GetState(GetNextState(s1.ID, action));
             Random rnd = new Random();
-            //TODO: Refector Reward function in a new method 
+            // Later use CalculateReward()
             double reward = rnd.NextDouble() / 2 + _rewardMean[s2.ID, s1.ID, action];
 
             Signal sig = new Signal(s2, s1, reward, env.GetAction(action), actor);
 
             return sig;
         }
+
+        private double CalculateReward()
+        {
+            return 0; // Scaffold for future use 
+        } 
         public Signal Interact(Action action, Agent actor, Environment env)
         {
             return Interact(action.ID, actor, env);

@@ -14,18 +14,16 @@ namespace AI.RL.Stochastic
         private Policy _policy;// Should have a policy 
         // should learn
         private double _return;// Should keep track of Return Value 
-        private int _id;
+        private int _id;    // Agent ID is used by Environment class 
 
         public int ID
         {
             get { return _id; }
-            //set { _id = value; }
         }
 
         public double Return
         {
             get { return _return; }
-           // set { _return = value; }
         }
 
         public Agent(int nStates, int nActions, int id)
@@ -68,8 +66,8 @@ namespace AI.RL.Stochastic
             // Interact with Environment 
             Signal sig = env.Interact(action,this);
             _return = _policy.GetReturn(sig, _return);
-            //_policy.Learn( sig);
-            Observe(env); 
+
+            Observe(env); // Observing is learning 
             return sig;
         }
 
