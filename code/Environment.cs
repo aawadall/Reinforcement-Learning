@@ -93,8 +93,10 @@ namespace AI.RL.Stochastic
         }
         public void Simulate()
         {
+            Console.WriteLine("Simulation");
             // Find who's turn 
             WhosTurn();
+            Console.WriteLine("Chosen Agent is " + ActiveAgentID);
             // Make them play
             ActiveAgent.Interact(this);
             ActiveAgent.ObserveMyMove(_sig);
