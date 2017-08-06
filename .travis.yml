@@ -1,6 +1,6 @@
 {
   "language": "c#",
   "group": "stable",
-  "dist": "trusty",
-  "os": "linux"
+  "dist": "10",
+  "os": "windows"
 }
