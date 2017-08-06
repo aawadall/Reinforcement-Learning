@@ -12,6 +12,7 @@ namespace AI.RL.Stochastic
      */
     class Environment
     {
+    #region Initilizations 
         private WorldDynamics _WD;
 
         private int _currentState;
@@ -22,7 +23,7 @@ namespace AI.RL.Stochastic
         private Agent[] _agents;
 
         private Signal _sig; // This signal object will be used for observations
-
+       
         public Environment(int nStates, int nActions, int nAgents, WorldDynamics WD)
         {
             ConstructActions(nActions);
@@ -32,16 +33,59 @@ namespace AI.RL.Stochastic
             _sig = new Signal(_states[0],_states[0],-100,_actions[0],_agents[0]);
         }
 
-        // States    
         private void ConstructStates(int nStates)
         {
             // Build random states using passed argument 
             _states = new State[nStates];
-            for (int i =0;i<nStates;i++)
+            for (int i = 0; i < nStates; i++)
             {
                 _states[i] = new State(i);
             }
         }
+
+        private void ConstructAgents(int nAgents)
+        {
+            // Build random states using passed argument 
+            _agents = new Agent[nAgents];
+            for (int i = 0; i < nAgents; i++)
+            {
+                _agents[i] = new Agent(_states.Length, _actions.Length, i);
+            }
+        }
+
+        private void ConstructActions(int nActions)
+        {
+            // Build random states using passed argument 
+            _actions = new Action[nActions];
+            for (int i = 0; i < nActions; i++)
+            {
+                _actions[i] = new Action(i);
+            }
+        }
+        #endregion
+
+        #region Simulation
+        // Simulation 
+        public Signal Interact(Action action, Agent actor)
+        {
+            /* Change the logic of interaction to pulling request.
+             * i.e. make a call to a selected agent and ask for their move. */ 
+            Console.WriteLine("Interacting with Agent: " + actor.ID);
+            _sig = _WD.Interact(action, actor, this);
+            _currentState = _sig.CurrentState.ID;
+            return _sig;
+        }
+
+        public Signal Interact(Agent agent)
+        {
+            return Interact( _actions[agent.BestMove(_currentState)] ,agent);
+        }
+        public Signal Observe => _sig; /* Observing current state of the environment 
+                                        * without altering the current state */
+
+        #endregion 
+        // States    
+
         public int nStates { get { return _states.Length; } }
         public State CurrentState { get { return _states[_currentState]; } }
         public State GetState(int index)
@@ -49,30 +93,14 @@ namespace AI.RL.Stochastic
             return _states[index];
         }
         // Actions 
-        private void ConstructActions(int nActions)
-        {
-            // Build random states using passed argument 
-            _actions = new Action[nActions];
-            for(int i=0;i<nActions;i++)
-            {
-                _actions[i] = new Action(i);
-            }
-        }
+        
         public int nActions { get { return _actions.Length; } }
         public Action GetAction(int idx) 
         { 
             return _actions[idx];  
         }
         // Agents 
-        private void ConstructAgents(int nAgents)
-        {
-            // Build random states using passed argument 
-            _agents = new Agent[nAgents];
-            for(int i = 0; i< nAgents;i++)
-            {
-                _agents[i] = new Agent(_states.Length,_actions.Length,i);
-            }
-        }
+       
         public int nAgents =>  _agents.Length; 
         public Agent ActiveAgent => _agents[ActiveAgentID]; 
         public Agent GetAgent(int idx)
@@ -80,18 +108,9 @@ namespace AI.RL.Stochastic
             return _agents[idx];
         }
         public Agent[] AllAgents => _agents;
-        // Simulation 
-        public Signal Interact(Action action, Agent actor)
-        {
-            Console.WriteLine("Interacting with Agent: " + actor.ID);
-            _sig = _WD.React(action, actor, this);
-            _currentState = _sig.CurrentState.ID;
-            return _sig;
-        }
 
-        public Signal Observe => _sig; /* Observing current state of the environment 
-                                        * without altering the current state */
 
+        
         public void Print()
         {
             // Side by side 

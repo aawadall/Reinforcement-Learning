@@ -70,19 +70,22 @@ namespace AI.RL.Stochastic
                 }
             }
         }
-
-        public Signal React(Action action, Agent actor, Environment env)
+        public Signal Interact(int action, Agent actor, Environment env)
         {
-            // TODO: Replace s1 with current state of env
             State s1 = env.CurrentState;
 
-            State s2 = env.GetState(GetNextState(s1.ID, action.ID));
+            State s2 = env.GetState(GetNextState(s1.ID, action));
             Random rnd = new Random();
-            double reward = rnd.NextDouble()/2+ _rewardMean[s2.ID,s1.ID,action.ID];
+            //TODO: Refector Reward function in a new method 
+            double reward = rnd.NextDouble() / 2 + _rewardMean[s2.ID, s1.ID, action];
 
-            Signal sig = new Signal(s2, s1, reward, action, actor);
+            Signal sig = new Signal(s2, s1, reward, env.GetAction(action), actor);
 
             return sig;
+        }
+        public Signal Interact(Action action, Agent actor, Environment env)
+        {
+            return Interact(action.ID, actor, env);
         }
 
         public int GetNextState(int current,int action)

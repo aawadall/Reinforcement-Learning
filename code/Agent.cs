@@ -35,6 +35,23 @@ namespace AI.RL.Stochastic
             _policy = new Policy(nStates, nActions);
         }
 
+        public int BestMove(int state)
+        {
+            /* use policy to find best move */
+            return _policy.BestAction(state);
+        }
+
+        public void ObserveMyMove(Signal sig)
+        {
+            _return = _policy.GetReturn(sig, _return);
+            Observe(sig);
+        }
+
+        public void Observe(Signal sig)
+        {
+            _policy.Learn(sig);
+        }
+
         public Signal Play(Boolean play,Environment env)
         {
             if (play)
