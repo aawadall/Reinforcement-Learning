@@ -1,3 +1,4 @@
+[![BCH compliance](https://bettercodehub.com/edge/badge/aawadall/Reinforcement-Learning?branch=master)](https://bettercodehub.com/)
 # _This repo is still new and it is poorly documented_
 
 # Reinforcememnt Learning Library
