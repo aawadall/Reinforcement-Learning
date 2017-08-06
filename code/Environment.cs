@@ -80,9 +80,35 @@ namespace AI.RL.Stochastic
         {
             return Interact( _actions[agent.BestMove(_currentState)] ,agent);
         }
+
         public Signal Observe => _sig; /* Observing current state of the environment 
                                         * without altering the current state */
+        
+        private void WhosTurn()
+        {
+            // Identify who's turn is it
+            // Cycle over ActiveAgent 
+            ActiveAgentID += ActiveAgentID < nAgents - 1 ? 1 : 1 - nAgents;
+            
+        }
+        public void Simulate()
+        {
+            // Find who's turn 
+            WhosTurn();
+            // Make them play
+            ActiveAgent.Interact(this);
+            ActiveAgent.ObserveMyMove(_sig);
+            // Update environment 
+            foreach(Agent agent in _agents)
+            {
+                // Make others see
+                if(agent.ID != ActiveAgentID)
+                {
+                    agent.Observe(this);
+                }
+            }
 
+        }
         #endregion 
         // States    
 
