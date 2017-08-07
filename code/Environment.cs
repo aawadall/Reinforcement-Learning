@@ -162,6 +162,12 @@ namespace AI.RL.Stochastic
             Console.WriteLine();
             // return 
             //Console.WriteLine();
+            Console.Write("Epsilon\t");
+            for (int i = 0; i < nAgents; i++)
+            { Console.Write("\t" + string.Format("{0:0.00}", _agents[i].Epsilon)); }
+            Console.WriteLine();
+            // return 
+            //Console.WriteLine();
             Console.Write("Return\t");
             for (int i = 0; i < nAgents; i++)
             { Console.Write("\t" + string.Format("{0:n0}", _agents[i].Return)); }

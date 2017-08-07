@@ -59,7 +59,7 @@ namespace AI.RL.Stochastic
                 return random.NextDouble();
             }
         }
-        public Parameters(): this(RandomNumber(), RandomNumber(), RandomNumber(), RandomNumber())
+        public Parameters(): this(RandomNumber(), RandomNumber(), RandomNumber(), RandomNumber()/10)
         {
             // If no parameters passed, create random ones 
         }

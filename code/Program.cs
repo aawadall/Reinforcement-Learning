@@ -15,7 +15,7 @@ namespace AI.RL.Stochastic
             int nActions = 15;
             int nStates = 12;
             int nAgents = 10;
-            int nSteps = 100000;
+            int nSteps = 10000;
             WorldDynamics WD = new WorldDynamics(nStates, nActions);
             Environment env = new Environment(nStates, nActions,nAgents,WD);
             

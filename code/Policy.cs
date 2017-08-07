@@ -35,8 +35,21 @@ namespace AI.RL.Stochastic
 
         public Policy(int nStates, int nActions) : this(nStates, nActions, new Parameters())
         { }
-#endregion
-
+        #endregion
+        #region Policy in Action 
+        public int NextMove(int stateID)
+        {
+            Random rnd = new Random();
+            if (Epsilon > rnd.NextDouble())
+            {
+                return Explore();
+            }
+            else
+            {
+                return GetBestMove(stateID);
+            }
+        }
+        
         public int BestAction(int stateID)
         {
             // Given a state ID, find best Action ID
@@ -55,7 +68,43 @@ namespace AI.RL.Stochastic
             }
 
         }
+        public double GetReturn(Signal sig, double ret)
+        {
+            return ret + _param.Gamma * sig.Reward;
+        }
 
+        public void Learn(Signal sig)
+        {
+            int state = sig.PrevioustState.ID;
+            int action = sig.Action.ID;
+            double[] qState = new double[_q.GetLength(1)];
+            for (int i = 0; i < qState.Length; i++)
+            {
+                qState[i] = _q[state, i];
+            }
+            _v[state] = qState.Max();
+            _q[state, action] += _param.Alpha * (sig.Reward + _param.Gamma * _v[state] - _q[state, action]);
+
+        }
+
+        public int GetBestMove(int state)
+        {
+            double[] qState = new double[_q.GetLength(1)];
+            for (int i = 0; i < qState.Length; i++)
+            {
+                qState[i] = _q[state, i];
+            }
+            return qState.ToList().IndexOf(qState.Max());
+        }
+
+        public int Explore()
+        {
+            Random rnd = new Random();
+            return rnd.Next(_q.GetLength(1) -1);
+        }
+        #endregion
+
+        #region Reporting and Stats
         public void Print()
         {
             Console.WriteLine("Policy Statistics");
@@ -87,35 +136,8 @@ namespace AI.RL.Stochastic
             }
 
         }
-
-        public double GetReturn(Signal sig, double ret)
-        {
-            return ret + _param.Gamma * sig.Reward;
-        }
-
-        public void Learn(Signal sig)
-        {
-            int state = sig.PrevioustState.ID;
-            int action = sig.Action.ID;
-            double[] qState = new double[_q.GetLength(1)];
-            for (int i = 0; i < qState.Length;i++ )
-            {
-                qState[i] = _q[state, i];
-            }
-            _v[state] = qState.Max();
-            _q[state, action] += _param.Alpha * (sig.Reward + _param.Gamma * _v[state] - _q[state, action]);
-          
-        }
-
-        public int GetBestMove(int state)
-        {
-            double[] qState = new double[_q.GetLength(1)];
-            for (int i = 0; i < qState.Length; i++)
-            {
-                qState[i] = _q[state, i];
-            }
-            return qState.ToList().IndexOf(qState.Max());
-        }
+#endregion
+ 
 
 
     }

@@ -17,15 +17,11 @@ namespace AI.RL.Stochastic
         private double _return;// Should keep track of Return Value 
         private int _id;    // Agent ID is used by Environment class 
 
-        public int ID
-        {
-            get { return _id; }
-        }
+  
 
-        public double Return
-        {
-            get { return _return; }
-        }
+        public int ID => _id; 
+        public double Return => _return; 
+        public double Epsilon => _policy.Epsilon;
 
         public Agent(int nStates, int nActions, int id):this(nStates, nActions, id, new Policy(nStates,nActions))
         {
@@ -37,10 +33,12 @@ namespace AI.RL.Stochastic
             _return = 0;
             _id = id;
             _policy = policy;
+
         }
         public double Alpha { get { return _policy.Alpha; } }
         public double Gamma { get { return _policy.Gamma; } }
         #endregion
+#region Learning and Acting 
         public int GetBestMove(int state)
         {
             /* use policy to find best move */
@@ -84,6 +82,10 @@ namespace AI.RL.Stochastic
             return Interact(env.GetAction(_policy.GetBestMove(env.CurrentState.ID)), env);
         }
 
+
+
+        #endregion
+#region Reporting and Stats 
         public void Print()
         {
             Console.WriteLine("Agent[" + _id + "] Statistics");
@@ -97,6 +99,6 @@ namespace AI.RL.Stochastic
             _policy.Learn(env.Observe);
             return env.Observe;
         }
-
+#endregion
     }
 }
