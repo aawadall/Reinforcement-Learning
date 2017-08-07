@@ -9,8 +9,9 @@ namespace AI.RL.Stochastic
     /*
      * Main player in this simulator, an intellegent AI agent using a policy assigned 
      */
-    class Agent
+    public class Agent
     {
+#region Agent Attributes & Constructors 
         private Policy _policy;// Should have a policy 
         // should learn
         private double _return;// Should keep track of Return Value 
@@ -26,14 +27,21 @@ namespace AI.RL.Stochastic
             get { return _return; }
         }
 
-        public Agent(int nStates, int nActions, int id)
+        public Agent(int nStates, int nActions, int id):this(nStates, nActions, id, new Policy(nStates,nActions))
+        {
+            
+        }
+
+        public Agent(int nStates, int nActions, int id, Policy policy)
         {
             _return = 0;
             _id = id;
-            _policy = new Policy(nStates, nActions);
+            _policy = policy;
         }
-
-        public int BestMove(int state)
+        public double Alpha { get { return _policy.Alpha; } }
+        public double Gamma { get { return _policy.Gamma; } }
+        #endregion
+        public int GetBestMove(int state)
         {
             /* use policy to find best move */
             return _policy.BestAction(state);
@@ -89,7 +97,6 @@ namespace AI.RL.Stochastic
             _policy.Learn(env.Observe);
             return env.Observe;
         }
-        public double Alpha { get { return _policy.Alpha; } }
-        public double Gamma { get { return _policy.Gamma; } }
+
     }
 }

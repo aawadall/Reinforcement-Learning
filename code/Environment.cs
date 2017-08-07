@@ -10,7 +10,7 @@ namespace AI.RL.Stochastic
      * A Collection of Agents and States 
      * and a single World Dynamics object 
      */
-    class Environment
+    public class Environment
     {
     #region Initilizations 
         private WorldDynamics _WD;
@@ -78,7 +78,7 @@ namespace AI.RL.Stochastic
 
         public Signal Interact(Agent agent)
         {
-            return Interact( _actions[agent.BestMove(_currentState)] ,agent);
+            return Interact( _actions[agent.GetBestMove(_currentState)] ,agent);
         }
 
         public Signal Observe => _sig; /* Observing current state of the environment 

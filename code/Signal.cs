@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AI.RL.Stochastic
 {
     /* A Signal is a collection of reward and new state */
-    class Signal
+    public class Signal
     {
         private readonly State _currentState;
         private readonly State _previousState;

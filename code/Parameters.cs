@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AI.RL.Stochastic
 {
-    class Parameters
+    public class Parameters
     {
 
         private string _algorithm; /* Possible Values :

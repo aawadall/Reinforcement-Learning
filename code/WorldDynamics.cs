@@ -8,11 +8,11 @@ namespace AI.RL.Stochastic
 {
     /* World Dynamics defines transmission probability and generated reward signal
      * from one state to another based on a given action */
-    class WorldDynamics
+    public class WorldDynamics
     {
         private double[,,] _transProb; // Transition Probability from state to state given action
         private double[,,] _rewardMean; // Mean value of a reward given transission and action
-
+        private readonly double _noise = 0.1;
         public WorldDynamics(int nStates, int nActions)
         {
             // Initialize Transmission probability and rewards means given state space size and action space size
@@ -77,16 +77,19 @@ namespace AI.RL.Stochastic
             State s2 = env.GetState(GetNextState(s1.ID, action));
             Random rnd = new Random();
             // Later use CalculateReward()
-            double reward = rnd.NextDouble() / 2 + _rewardMean[s2.ID, s1.ID, action];
+            double reward = CalculateReward(s1,s2, env.GetAction(action));
 
             Signal sig = new Signal(s2, s1, reward, env.GetAction(action), actor);
 
             return sig;
         }
 
-        private double CalculateReward()
+        private double CalculateReward(State oldState, State newState, Action action)
         {
-            return 0; // Scaffold for future use 
+            Random rnd = new Random();
+            // Later use CalculateReward()
+            return (rnd.NextDouble()/2-1) *_noise + _rewardMean[oldState.ID, newState.ID, action.ID];
+           
         } 
         public Signal Interact(Action action, Agent actor, Environment env)
         {

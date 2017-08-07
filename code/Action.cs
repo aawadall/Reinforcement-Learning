@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AI.RL.Stochastic
 {
-    class Action 
+    public class Action 
     {
         private readonly int _actionID;
         private readonly string _actionName;

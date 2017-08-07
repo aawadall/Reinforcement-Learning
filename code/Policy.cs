@@ -10,8 +10,9 @@ namespace AI.RL.Stochastic
      * A Policy is used to learn how an environment behaves
      * and finds the optimal way of interacting with it
      */
-    class Policy
+    public class Policy
     {
+#region Attributes and Constructors 
         private readonly string _algorithm; //Learning Algorithm, future feature  
         private double[,] _q; // State Action Pair , i = state, j = action
         private double[] _v; // State Value
@@ -19,6 +20,11 @@ namespace AI.RL.Stochastic
         private Parameters _param;
 
         private double[] _theta; // used for function approximation
+
+        public double Alpha => _param.Alpha; 
+        public double Gamma => _param.Gamma;
+        public double Lambda => _param.Lambda;
+        public double Epsilon => _param.Epsilon;
 
         public Policy(int nStates, int nActions, Parameters param)
         {
@@ -29,7 +35,7 @@ namespace AI.RL.Stochastic
 
         public Policy(int nStates, int nActions) : this(nStates, nActions, new Parameters())
         { }
-
+#endregion
 
         public int BestAction(int stateID)
         {
@@ -111,7 +117,6 @@ namespace AI.RL.Stochastic
             return qState.ToList().IndexOf(qState.Max());
         }
 
-        public double Alpha { get { return _param.Alpha; } }
-        public double Gamma { get { return _param.Gamma; } }
+
     }
 }

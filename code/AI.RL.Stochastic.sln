@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.RL.Stochastic", "AI.RL.Stochastic.csproj", "{68261C8A-6C6A-458D-A388-AB83B0B8A9E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.RL.StochasticTests", "..\AI.RL.StochasticTests\AI.RL.StochasticTests.csproj", "{92947C11-FA5D-43F1-8F81-5EA508CBF42C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{68261C8A-6C6A-458D-A388-AB83B0B8A9E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68261C8A-6C6A-458D-A388-AB83B0B8A9E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68261C8A-6C6A-458D-A388-AB83B0B8A9E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92947C11-FA5D-43F1-8F81-5EA508CBF42C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92947C11-FA5D-43F1-8F81-5EA508CBF42C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92947C11-FA5D-43F1-8F81-5EA508CBF42C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92947C11-FA5D-43F1-8F81-5EA508CBF42C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

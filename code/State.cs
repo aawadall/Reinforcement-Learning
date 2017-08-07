@@ -9,7 +9,7 @@ namespace AI.RL.Stochastic
     /*State class, is a simple class. 
      * it would initially contain a state number and features of a state if required. 
      * States can be implied states based on observations of an environment */
-    class State
+    public class State
     {
         private readonly int _stateID;
         private readonly string _stateName;
