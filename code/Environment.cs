@@ -22,7 +22,7 @@ namespace AI.RL.Stochastic
         private State[] _states;
         private Agent[] _agents;
 
-        private Signal _sig; // This signal object will be used for observations
+        private Event _sig; // This signal object will be used for observations
        
         public Environment(int nStates, int nActions, int nAgents, WorldDynamics WD)
         {
@@ -30,7 +30,7 @@ namespace AI.RL.Stochastic
             ConstructStates(nStates);
             ConstructAgents(nAgents);
             _WD = WD;
-            _sig = new Signal(_states[0],_states[0],-100,_actions[0],_agents[0]);
+            _sig = new Event(_states[0],_states[0],-100,_actions[0],_agents[0]);
         }
 
         private void ConstructStates(int nStates)
@@ -66,7 +66,7 @@ namespace AI.RL.Stochastic
 
         #region Simulation
         // Simulation 
-        public Signal Interact(Action action, Agent actor)
+        public Event Interact(Action action, Agent actor)
         {
             /* Change the logic of interaction to pulling request.
              * i.e. make a call to a selected agent and ask for their move. */ 
@@ -76,12 +76,12 @@ namespace AI.RL.Stochastic
             return _sig;
         }
 
-        public Signal Interact(Agent agent)
+        public Event Interact(Agent agent)
         {
             return Interact( _actions[agent.GetBestMove(_currentState)] ,agent);
         }
 
-        public Signal Observe => _sig; /* Observing current state of the environment 
+        public Event Observe => _sig; /* Observing current state of the environment 
                                         * without altering the current state */
         
         private void WhosTurn()

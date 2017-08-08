@@ -70,7 +70,7 @@ namespace AI.RL.Stochastic
                 }
             }
         }
-        public Signal Interact(int action, Agent actor, Environment env)
+        public Event Interact(int action, Agent actor, Environment env)
         {
             State s1 = env.CurrentState;
 
@@ -79,7 +79,7 @@ namespace AI.RL.Stochastic
             // Later use CalculateReward()
             double reward = CalculateReward(s1,s2, env.GetAction(action));
 
-            Signal sig = new Signal(s2, s1, reward, env.GetAction(action), actor);
+            Event sig = new Event(s2, s1, reward, env.GetAction(action), actor);
 
             return sig;
         }
@@ -91,7 +91,7 @@ namespace AI.RL.Stochastic
             return (rnd.NextDouble()/2-1) *_noise + _rewardMean[oldState.ID, newState.ID, action.ID];
            
         } 
-        public Signal Interact(Action action, Agent actor, Environment env)
+        public Event Interact(Action action, Agent actor, Environment env)
         {
             return Interact(action.ID, actor, env);
         }

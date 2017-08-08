@@ -68,12 +68,12 @@ namespace AI.RL.Stochastic
             }
 
         }
-        public double GetReturn(Signal sig, double ret)
+        public double GetReturn(Event sig, double ret)
         {
             return ret + _param.Gamma * sig.Reward;
         }
 
-        public void Learn(Signal sig)
+        public void Learn(Event sig)
         {
             int state = sig.PrevioustState.ID;
             int action = sig.Action.ID;

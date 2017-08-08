@@ -45,18 +45,18 @@ namespace AI.RL.Stochastic
             return _policy.BestAction(state);
         }
 
-        public void ObserveMyMove(Signal sig)
+        public void ObserveMyMove(Event sig)
         {
             _return = _policy.GetReturn(sig, _return);
             Observe(sig);
         }
 
-        public void Observe(Signal sig)
+        public void Observe(Event sig)
         {
             _policy.Learn(sig);
         }
 
-        public Signal Play(Boolean play,Environment env)
+        public Event Play(Boolean play,Environment env)
         {
             if (play)
             {
@@ -66,18 +66,18 @@ namespace AI.RL.Stochastic
              return Observe(env);
                    
         }
-        public Signal Interact(Action action, Environment env)
+        public Event Interact(Action action, Environment env)
         {
             
             // Interact with Environment 
-            Signal sig = env.Interact(action,this);
+            Event sig = env.Interact(action,this);
             _return = _policy.GetReturn(sig, _return);
 
             Observe(env); // Observing is learning 
             return sig;
         }
 
-        public Signal Interact(Environment env)
+        public Event Interact(Environment env)
         {
             return Interact(env.GetAction(_policy.GetBestMove(env.CurrentState.ID)), env);
         }
@@ -93,7 +93,7 @@ namespace AI.RL.Stochastic
             Console.WriteLine("Accumilated Return = " + _return);
         }
 
-        public Signal Observe(Environment env)
+        public Event Observe(Environment env)
         {
             // Learn by observing 
             _policy.Learn(env.Observe);
