@@ -31,13 +31,14 @@ A policy will have:
 * a parameters object containing important parameters used by the policy
 policies can learn and act based on optimal values
 
-## Signal
-a signal is a collection of objects used to declare the result of an action applied on the environment.
+## ~~Signal~~ Event
+an Event ~~signal~~ is a collection of objects used to declare the result of an action applied on the environment.
 it contains:
 * State after action
-* PRevious state before action
+* Previous state before action
 * Reward signal
 * Action used to make this change 
+* Actor agent performing this action
 
 ## State
 A hollow class, similar to action.
