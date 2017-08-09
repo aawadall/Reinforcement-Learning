@@ -52,3 +52,5 @@ This is the main simulator
 * Make Agents interact only with integer actions
 * Make only environments able to see action objects 
 * make action objects able to invoke real events 
+* World Dynamics should interact with the meaning of an action not with the ID of an action
+* Actions and Agents should have a defined relation
