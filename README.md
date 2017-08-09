@@ -47,6 +47,10 @@ this is used to represent a state.
 ## World Dynamics 
 This is the main simulator 
 
+## TODO: Action Collection
+A new class to be defined, Action Collection, is a set of actions sorted in a certain manner, and can be accessed using an index. this index is wel understood by the agent related to this action collection.
+While an agent has a new attribute of AgentType.
+An Environment should define relation between agent types and action collections 
 
 # Things to do
 * Make Agents interact only with integer actions
