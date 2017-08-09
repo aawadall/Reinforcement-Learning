@@ -46,3 +46,9 @@ this is used to represent a state.
 
 ## World Dynamics 
 This is the main simulator 
+
+
+# Things to do
+* Make Agents interact only with integer actions
+* Make only environments able to see action objects 
+* make action objects able to invoke real events 
