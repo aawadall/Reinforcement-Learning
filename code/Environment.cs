@@ -18,14 +18,22 @@ namespace AI.RL.Stochastic
         private int _currentState;
         public int ActiveAgentID{get;set;}
 
-        private Action[] _actions;
-        private State[] _states;
-        private Agent[] _agents;
+        private List<Action> _actions;
+        private List<State> _states;
+        private List<Agent> _agents;
+
+        private int _nStates;
+        private int _nAgents;
+        private int _nActions;
 
         private Event _sig; // This signal object will be used for observations
        
         public Environment(int nStates, int nActions, int nAgents, WorldDynamics WD)
         {
+            _nAgents = nAgents;
+            _nStates = nStates;
+            _nActions = nActions;
+
             ConstructActions(nActions);
             ConstructStates(nStates);
             ConstructAgents(nAgents);
@@ -36,7 +44,7 @@ namespace AI.RL.Stochastic
         private void ConstructStates(int nStates)
         {
             // Build random states using passed argument 
-            _states = new State[nStates];
+            _states = new List<State>();
             for (int i = 0; i < nStates; i++)
             {
                 _states[i] = new State(i);
@@ -46,17 +54,17 @@ namespace AI.RL.Stochastic
         private void ConstructAgents(int nAgents)
         {
             // Build random states using passed argument 
-            _agents = new Agent[nAgents];
+            _agents = new List<Agent>();
             for (int i = 0; i < nAgents; i++)
             {
-                _agents[i] = new Agent(_states.Length, _actions.Length, i);
+                _agents[i] = new Agent(_nStates, _nActions, i);
             }
         }
 
         private void ConstructActions(int nActions)
         {
             // Build random states using passed argument 
-            _actions = new Action[nActions];
+            _actions = new List<Action>();
             for (int i = 0; i < nActions; i++)
             {
                 _actions[i] = new Action(i);
@@ -114,7 +122,7 @@ namespace AI.RL.Stochastic
         #endregion 
         // States    
 
-        public int nStates { get { return _states.Length; } }
+        public int nStates { get { return _nStates; } }
         public State CurrentState { get { return _states[_currentState]; } }
         public State GetState(int index)
         {
@@ -122,20 +130,20 @@ namespace AI.RL.Stochastic
         }
         // Actions 
         
-        public int nActions { get { return _actions.Length; } }
+        public int nActions { get { return _nActions; } }
         public Action GetAction(int idx) 
         { 
             return _actions[idx];  
         }
         // Agents 
        
-        public int nAgents =>  _agents.Length; 
+        public int nAgents =>  _nAgents; 
         public Agent ActiveAgent => _agents[ActiveAgentID]; 
         public Agent GetAgent(int idx)
         {
             return _agents[idx];
         }
-        public Agent[] AllAgents => _agents;
+        public List<Agent> AllAgents => _agents;
 
 
         
