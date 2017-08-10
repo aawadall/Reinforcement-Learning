@@ -9,28 +9,28 @@ namespace AI.RL.Stochastic
     /*
      * Action Collection is made of a set of actions, index and a general Collection Description
      */
-    public class ActionCollection
+    public class SkillSet
     {
         private Action[] _actions;
         private int _nActions;
         private string _collectionName;
 
-        public ActionCollection():this("")
+        public SkillSet():this("")
         { }
 
-        public ActionCollection(string name)
+        public SkillSet(string name)
         {
             _collectionName = name;
         }
 
         public Action[] Actions { get => _actions; }
 
-        public void AddAction(Action action)
+        public void LearnSkill(Action action)
         {
             Actions[_nActions++] = action;
         }
 
-        public Action GetActionAt(int idx)
+        public Action GetSkill(int idx)
         {
             try
             {
@@ -40,6 +40,12 @@ namespace AI.RL.Stochastic
             {
                 return null;
             }
+        }
+
+        public void InvokeSkill(int idx, Environment env)
+        {
+            // when implemented, it would invoke the customized Invoke() method of the idx_th action 
+            
         }
     }
 }

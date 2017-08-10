@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Action.cs" />
-    <Compile Include="ActionCollection.cs" />
+    <Compile Include="SkillSet.cs" />
     <Compile Include="Agent.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="Parameters.cs" />
