@@ -9,3 +9,5 @@ all code in the code folder is ready to compile under _Visual Studio 2017_
 [![BCH compliance](https://bettercodehub.com/edge/badge/aawadall/Reinforcement-Learning?branch=master)](https://bettercodehub.com/)
 ## Build Status 
 Not ready yet
+## Current Activity
+Modifying collections to lists intead of static arrays to allow dynamic environments
