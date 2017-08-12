@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  ai.rl.stochastic:
+    image: ai.rl.stochastic
+    build:
+      context: 
+      dockerfile: Dockerfile

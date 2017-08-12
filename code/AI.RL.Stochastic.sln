@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.RL.Stochastic", "AI.RL.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.RL.StochasticTests", "..\AI.RL.StochasticTests\AI.RL.StochasticTests.csproj", "{92947C11-FA5D-43F1-8F81-5EA508CBF42C}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D8F7CFC5-D7CF-4A64-8129-366AC9E3EA27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{92947C11-FA5D-43F1-8F81-5EA508CBF42C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92947C11-FA5D-43F1-8F81-5EA508CBF42C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92947C11-FA5D-43F1-8F81-5EA508CBF42C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8F7CFC5-D7CF-4A64-8129-366AC9E3EA27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8F7CFC5-D7CF-4A64-8129-366AC9E3EA27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8F7CFC5-D7CF-4A64-8129-366AC9E3EA27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8F7CFC5-D7CF-4A64-8129-366AC9E3EA27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
