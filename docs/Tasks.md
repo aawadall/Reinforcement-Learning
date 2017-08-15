@@ -17,7 +17,7 @@ while the internal action ID of an agent might have the same behaviour for a dif
 ### Define Action/State relation table 
 similar to the agent/action matrix, define a state/action matrix also starting from 0.
 this can allow the environment to define valid actions on a state and define illegal moves as well. 
-an illegal move is any action that is not defined at a state/action relation table or an agent/action table. 
+_an illegal move is any action that is not defined at a state/action relation table or an agent/action table._
 
 ### Environment has Interactive States
 Define an environment as having one or more interactive states capable of:
@@ -28,5 +28,7 @@ Define an environment as having one or more interactive states capable of:
 ## State 
 ### Shift World Dynamics into State
 move the World Dynamics object defining world behaviour based on actions on states inside a state instead of being a global matrix in an environment.
-i.e. define a matrix inside the state that provide the trnsmission probability from current state to another state based on an action.
-note that an action in this context is the internal action ID to the state. 
+_i.e. define a matrix inside the state that provide the trnsmission probability from current state to another state based on an action._
+_**note that an action in this context is the internal action ID to the state. **_
+
+_**Hint:** use State Design Pattern_
