@@ -1,4 +1,10 @@
 # Tasks to To Do
+## Documentation
+### Create Class Design Document 
+## Build 
+### Define a container
+Define a container to run this application on a CI
+
 ## Agent Related 
 ## Environment Related
 ### Create a Facade for Agents
