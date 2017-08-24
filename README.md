@@ -12,4 +12,10 @@ all code in the code folder is ready to compile under _Visual Studio 2017_
 ## Build Status 
 Not ready yet
 ## Current Activity
-Modifying collections to lists intead of static arrays to allow dynamic environments
+<strike>Modifying collections to lists intead of static arrays to allow dynamic environments</strike>
+Building an implementation to test this agent, a traffic light intersection.
+This will require:
+
+1. Traffic simulator 
+1. A single agent to control the intersection traffic lights 
+1. Visualization (optional)
